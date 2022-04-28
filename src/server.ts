@@ -1,17 +1,17 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from './config/cors';
- 
-const server = express();
+import express from 'express'
+import bodyParser from 'body-parser'
+import cors from './config/cors'
 
-server.use(bodyParser.urlencoded({extended: true}));
-server.use(bodyParser.json());
-server.use(cors);
+const server = express()
 
-const port = 8080;
+server.use(bodyParser.urlencoded({ extended: true }))
+server.use(bodyParser.json())
+server.use(cors)
 
-server.listen(port, function(){
-    console.log(`BACKEND is running. Port: ${port}`);
-});
+const port = 8080
 
-export default server;
+server.listen(port, function () {
+  console.log(`BACKEND is running. Port: ${port}`)
+})
+
+export default server

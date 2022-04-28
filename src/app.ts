@@ -1,2 +1,2 @@
-import server from "./server";
-import "dotenv/config";
+// import server from './server'
+import 'dotenv/config'
