@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "es2019",
     "module": "commonjs",
     "outDir": "./dist",
     "rootDir": "./src",
-    "strict": true,
-    "strictPropertyInitialization": false,
-    "baseUrl": "./src",
     "allowJs": true,
+    "baseUrl": "./src",
+    "sourceMap": true,
     "esModuleInterop": true,
+    "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "forceConsistentCasingInFileNames": true
+    "strict": false,
+    "strictPropertyInitialization": false,
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

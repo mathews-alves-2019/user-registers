@@ -1,17 +1,15 @@
-import express from 'express'
-import bodyParser from 'body-parser'
-import cors from './config/cors'
+import express, { Express } from 'express';
+import bodyParser from 'body-parser';
+import cors from './config/cors';
+import setRoutes from './config/routes';
 
-const server = express()
+export const app = async (): Promise<Express> => {
+    const expressApp = express();
 
-server.use(bodyParser.urlencoded({ extended: true }))
-server.use(bodyParser.json())
-server.use(cors)
+    expressApp.use(bodyParser.urlencoded({ extended: true }));
+    expressApp.use(bodyParser.json());
+    expressApp.use(cors);
+    setRoutes(expressApp);
 
-const port = 8080
-
-server.listen(port, function () {
-  console.log(`BACKEND is running. Port: ${port}`)
-})
-
-export default server
+    return expressApp;
+};
