@@ -2,16 +2,15 @@ import User from '../../entities/User';
 import { EntityRepository } from '../../../../interfaces';
 import Database from '../../../../config/database';
 
-export class FindUserByEmailRepository implements EntityRepository {
+export class FindUserByIdRepository implements EntityRepository {
     constructor(private readonly database: Database){
     }
 
-    async execute(email: string) {
+    async execute(id: string) {
         return await this.database.init().then(async () => await this.database
             .getConnection().manager
             .findOne(User, {
-                where: { email },
-                select: ['password'],
+                where: { id },
             }));
     }
 }
