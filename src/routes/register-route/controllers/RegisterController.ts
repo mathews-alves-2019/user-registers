@@ -6,6 +6,7 @@ import {
 } from '../../../interfaces';
 import { badRequest, serverError } from '../../helpers';
 import { UserRegisterDTO } from '../../commons/dto/UserRegisterDTO';
+import { returnEncryptPassword } from '../../helpers/password-helper';
 
 export class RegisterController implements Controller {
     constructor(
@@ -15,11 +16,15 @@ export class RegisterController implements Controller {
 
     async handle(request: Request): Promise<HttpResponse> {
         try {
-            const error = this.validation.validate(request);
+            const error = await this.validation.validate(request);
             if (error) {
                 return badRequest(error);
             }
-            const user = new UserRegisterDTO(request.name, request.email, request.password);
+            const user = new UserRegisterDTO(
+                request.name,
+                request.email,
+                returnEncryptPassword(request.password),
+            );
             const response = await this.repository.execute(user);
             return {
                 statusCode: 200,

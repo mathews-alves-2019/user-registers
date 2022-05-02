@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import randomEmail from 'random-email';
 import { Express } from 'express';
 import { app } from '../server';
 
@@ -13,10 +14,10 @@ describe('User register test', () => {
 
     test('Should return 200 when all params are valid', async () => {
         await request(server)
-            .post('/api/login')
+            .post('/api/regiterUser')
             .send(
                 {
-                    email: 'valid_email@mail.com',
+                    email: randomEmail({ domain: 'test.com' }),
                     password: 'password123',
                     confirmPassword: 'password123',
                     name: 'Name test',
@@ -27,7 +28,7 @@ describe('User register test', () => {
 
     test('Should return 400 when password do not have numbers or letters', async () => {
         await request(server)
-            .post('/api/login')
+            .post('/api/regiterUser')
             .send(
                 {
                     email: 'valid_email@mail.com',
@@ -41,7 +42,7 @@ describe('User register test', () => {
 
     test('Should return 400 when passwords are divergents', async () => {
         await request(server)
-            .post('/api/login')
+            .post('/api/regiterUser')
             .send(
                 {
                     email: 'valid_email@mail.com',

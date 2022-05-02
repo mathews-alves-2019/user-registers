@@ -1,14 +1,13 @@
-import { makeLoginValidation } from '../validation-factories/RegisterValidationFactory';
+import { makeRegisterValidation } from '../validation-factories/RegisterValidationFactory';
 import { Controller } from '../../../../interfaces';
 import { RegisterController } from '../../controllers/RegisterController';
-import { CreateUserRepository } from '../../../commons/repositories/user/UserRepository';
+import { CreateUserRepository } from '../../../commons/repositories/user/CreateUserRepository';
 import Database from '../../../../config/database';
 
-export const makeLoginController = (): Controller => {
-    const database = new Database();
+export const makeRegisterController = (): Controller => {
     const controller = new RegisterController(
-        makeLoginValidation(),
-        new CreateUserRepository(database),
+        makeRegisterValidation(),
+        new CreateUserRepository(new Database()),
     );
     return controller;
 };
