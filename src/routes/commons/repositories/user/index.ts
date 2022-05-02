@@ -1,3 +1,4 @@
 export * from './CreateUserRepository';
 export * from './FindUserByEmailRepository';
-export * from './FindUserById';
+export * from './DeleteUserByIdRepository';
+export * from './FindUserByIdRepository';

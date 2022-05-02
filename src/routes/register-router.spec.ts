@@ -10,6 +10,16 @@ let server: Express;
 describe('User register test', () => {
     beforeAll(async () => {
         server = await app();
+        await request(server)
+            .post('/api/regiterUser')
+            .send(
+                {
+                    email: 'valid_email@mail.com',
+                    password: 'password123',
+                    confirmPassword: 'password123',
+                    name: 'Name test',
+                },
+            );
     });
 
     test('Should return 200 when all params are valid', async () => {
