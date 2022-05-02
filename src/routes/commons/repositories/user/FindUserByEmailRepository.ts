@@ -11,7 +11,7 @@ export class FindUserByEmailRepository implements EntityRepository {
             .getConnection().manager
             .findOne(User, {
                 where: { email },
-                select: ['password'],
+                select: ['password', 'email', 'id'],
             }));
     }
 }

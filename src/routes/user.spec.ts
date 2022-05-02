@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { Express } from 'express';
 import { app } from '../server';
+import { decodeToken } from './commons/auth/auth';
 
 const request = require('supertest');
 
@@ -21,8 +22,11 @@ describe('User register test', () => {
                 },
             );
 
+        const data = decodeToken(reponse.body.token);
+
         await request(server)
-            .get('/api/getUser/89e23f92-7e48-4cde-8292-b399dca4b757')
+            // eslint-disable-next-line @typescript-eslint/dot-notation
+            .get(`/api/getUser/${data['id']}`)
             .set('x-access-token', reponse.body.token)
             .send()
             .expect(200);
