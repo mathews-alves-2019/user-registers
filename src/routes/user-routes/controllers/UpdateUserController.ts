@@ -19,7 +19,6 @@ export class UpdateUserController implements Controller {
             if (request.password) {
                 const error = await this.validation.validate(request);
                 if (error) {
-                    console.error(error);
                     return badRequest(error);
                 }
                 user = new UserRegisterDTO(

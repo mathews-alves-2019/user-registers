@@ -11,7 +11,6 @@ export class UpdateUserRepository implements UpdateEntityRepository {
         return await this.database.init().then(async () => {
             const entity = this.database.getConnection().manager.create(User, user);
             entity.id = userId;
-            console.log(entity);
             return await this.database.getConnection().manager
                 .update(User, userId, { ...entity }).then((response: any) => response);
         });

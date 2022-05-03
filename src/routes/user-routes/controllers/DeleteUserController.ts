@@ -12,7 +12,6 @@ export class DeleteUserController implements Controller {
 
     async handle(request: Request): Promise<HttpResponse> {
         try {
-            console.log(request.userId);
             const response = await this.repository.execute(request.userId);
             return {
                 statusCode: 200,

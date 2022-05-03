@@ -26,7 +26,6 @@ export class RegisterController implements Controller {
                 returnEncryptPassword(request.password),
             );
             const response = await this.repository.execute(user);
-            console.log(response);
             return {
                 statusCode: 200,
                 body: response,

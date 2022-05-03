@@ -4,3 +4,5 @@ coverage
 ./data
 requirements
 .vscode
+babel.config.js
+jest.config.js
