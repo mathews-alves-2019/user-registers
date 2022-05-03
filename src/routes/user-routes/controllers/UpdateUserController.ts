@@ -15,24 +15,30 @@ export class UpdateUserController implements Controller {
 
     async handle(request: Request): Promise<HttpResponse> {
         try {
-            console.log(request);
+            let user: UserRegisterDTO;
             if (request.password) {
                 const error = await this.validation.validate(request);
                 if (error) {
+                    console.error(error);
                     return badRequest(error);
                 }
+                user = new UserRegisterDTO(
+                    request.name,
+                    request.email,
+                    request.password,
+                );
+            } else {
+                user = new UserRegisterDTO(
+                    request.name,
+                    request.email,
+                );
             }
-            const user = new UserRegisterDTO(
-                request.name,
-                request.email,
-            );
             const response = await this.repository.execute(user, request.userId);
             return {
                 statusCode: 200,
                 body: response,
             };
         } catch (error: any) {
-            console.log(error);
             return serverError(error);
         }
     }

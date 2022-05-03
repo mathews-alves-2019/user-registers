@@ -78,6 +78,33 @@ describe('User register test', () => {
             .expect(200);
     });
 
+    test('Should return 200 when all params are valid and the user password is update', async () => {
+        const reponse = await request(server)
+            .post('/api/login')
+            .send(
+                {
+                    email: 'forUpdateEmailUpdated@email.com',
+                    password: 'password123',
+                },
+            );
+
+        const data = decodeToken(reponse.body.token);
+
+        await request(server)
+        // eslint-disable-next-line @typescript-eslint/dot-notation
+            .put(`/api/updateUser/${data['id']}`)
+            .send(
+                {
+                    name: 'Name test updated',
+                    email: 'forUpdateEmailUpdated@email.com',
+                    password: 'password123',
+                    confirmPassword: 'password123',
+                },
+            )
+            .set('x-access-token', reponse.body.token)
+            .expect(200);
+    });
+
     test('Should return 200 when all params are valid and the use is deleted', async () => {
         const reponse = await request(server)
             .post('/api/login')
