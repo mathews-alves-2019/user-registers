@@ -12,7 +12,7 @@ import { EmailAlreadyExistsValidation } from '../../../../validators/EmailAlread
 import { FindUserByEmailRepository } from '../../../commons/repositories/user/FindUserByEmailRepository';
 import Database from '../../../../config/database';
 
-export const makeRegisterValidation = (): ValidationComposite => {
+export const makeUserValidation = (): ValidationComposite => {
     const validations: Validation[] = [];
     const userRegisterDTO = new UserRegisterDTO('','','');
     const fieldsFromUserRegisterDTO: Array<Object> = Object.keys(userRegisterDTO).map((key) => key);

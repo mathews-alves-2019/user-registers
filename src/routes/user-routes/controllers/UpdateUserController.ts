@@ -1,44 +1,47 @@
+import { UserRegisterDTO } from '../../commons/dto';
 import {
     Controller,
-    EntityRepository,
     HttpResponse,
+    UpdateEntityRepository,
     Validation,
 } from '../../../interfaces';
 import { badRequest, serverError } from '../../helpers';
-import { UserRegisterDTO } from '../../commons/dto/UserRegisterDTO';
-import { returnEncryptPassword } from '../../helpers/password-helper';
 
-export class RegisterController implements Controller {
+export class UpdateUserController implements Controller {
     constructor(
         private readonly validation: Validation,
-        private readonly repository: EntityRepository,
+        private readonly repository: UpdateEntityRepository,
     ) { }
 
     async handle(request: Request): Promise<HttpResponse> {
         try {
-            const error = await this.validation.validate(request);
-            if (error) {
-                return badRequest(error);
+            console.log(request);
+            if (request.password) {
+                const error = await this.validation.validate(request);
+                if (error) {
+                    return badRequest(error);
+                }
             }
             const user = new UserRegisterDTO(
                 request.name,
                 request.email,
-                returnEncryptPassword(request.password),
             );
-            const response = await this.repository.execute(user);
-            console.log(response);
+            const response = await this.repository.execute(user, request.userId);
             return {
                 statusCode: 200,
                 body: response,
             };
         } catch (error: any) {
+            console.log(error);
             return serverError(error);
         }
     }
 }
 
-export interface Request {
+interface Request {
     email: string
     password: string
+    confirmPassword: string
     name: string
+    userId: string
 }

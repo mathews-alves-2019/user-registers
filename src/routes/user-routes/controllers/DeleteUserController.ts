@@ -5,13 +5,14 @@ import {
 } from '../../../interfaces';
 import { serverError } from '../../helpers';
 
-export class GetUserController implements Controller {
+export class DeleteUserController implements Controller {
     constructor(
         private readonly repository: EntityRepository,
     ) { }
 
     async handle(request: Request): Promise<HttpResponse> {
         try {
+            console.log(request.userId);
             const response = await this.repository.execute(request.userId);
             return {
                 statusCode: 200,

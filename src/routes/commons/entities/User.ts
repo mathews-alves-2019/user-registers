@@ -15,6 +15,6 @@ export default class Users {
     @Column()
     email: string;
 
-    @Column({ select: false })
+    @Column({ select: false, update: false })
     password: string;
 }
