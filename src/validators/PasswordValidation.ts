@@ -13,7 +13,9 @@ export class PasswordValidation implements Validation {
             if (input[this.fieldName] !== input[this.confirmFieldName]) {
                 return new PasswordConfirmError(this.fieldName);
             }
+
             const isValid = this.passwordValidator.isValid(input[this.fieldName]);
+
             if (!isValid) {
                 return new PasswordConfirmError(this.fieldName);
             }

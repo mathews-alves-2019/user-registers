@@ -6,6 +6,7 @@ export class ValidationComposite implements Validation {
     validate(input: any): Promise<Error> | Error {
         for (const validation of this.validations) {
             const error = validation.validate(input);
+
             if (error) {
                 return error;
             }
