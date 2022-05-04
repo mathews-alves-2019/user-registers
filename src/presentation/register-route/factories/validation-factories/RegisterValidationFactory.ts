@@ -6,10 +6,10 @@ import {
     EmailValidatorAdapter,
     PasswordValidation,
     PasswordValidatorAdapter,
+    EmailAlreadyExistsValidation,
 } from '../../../../validators';
 import { Validation } from '../../../../interfaces';
-import { EmailAlreadyExistsValidation } from '../../../../validators/EmailAlreadyExistsValidation';
-import { FindUserByEmailRepository } from '../../../commons/repositories/user/FindUserByEmailRepository';
+import { FindUserByEmailRepository } from '../../../commons/repositories/user';
 import Database from '../../../../config/database';
 
 export const makeUserValidation = (): ValidationComposite => {

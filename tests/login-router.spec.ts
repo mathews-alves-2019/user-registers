@@ -1,9 +1,8 @@
 import 'reflect-metadata';
+import request from 'supertest';
 import randomEmail from 'random-email';
 import { Express } from 'express';
-import { app } from '../server';
-
-const request = require('supertest');
+import { app } from '../src/server';
 
 let server: Express;
 

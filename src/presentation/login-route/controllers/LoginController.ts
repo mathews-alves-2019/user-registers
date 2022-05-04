@@ -31,6 +31,7 @@ export class LoginController implements Controller {
                 body: { token: getToken(user.id, user.email) },
             };
         } catch (error: any) {
+            console.log(error);
             return serverError(error);
         }
     }

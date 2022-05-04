@@ -1,45 +1,35 @@
 import 'reflect-metadata';
+import request from 'supertest';
 import randomEmail from 'random-email';
 import { Express } from 'express';
-import { app } from '../server';
-import { decodeToken } from './commons/auth/auth';
-
-const request = require('supertest');
+import { app } from '../src/server';
+import { decodeToken } from '../src/presentation/commons/auth/auth';
 
 let server: Express;
 
 describe('User register test', () => {
     beforeAll(async () => {
         server = await app();
-        await request(server)
-            .post('/api/regiterUser')
-            .send(
-                {
-                    email: 'forDeleteEmail@email.com',
-                    password: 'password123',
-                    confirmPassword: 'password123',
-                    name: 'Name test',
-                },
-            );
-
-        await request(server)
-            .post('/api/regiterUser')
-            .send(
-                {
-                    email: 'forUpdateEmail@email.com',
-                    password: 'password123',
-                    confirmPassword: 'password123',
-                    name: 'Name test',
-                },
-            );
     });
 
-    test('Should return 200 when all params are valid', async () => {
+    test('Should return 200 when all params are valid and the user inserted.', async () => {
+        const email = randomEmail({ domain: 'test.com' });
+        await request(server)
+            .post('/api/regiterUser')
+            .send(
+                {
+                    email,
+                    password: 'password123',
+                    confirmPassword: 'password123',
+                    name: 'Name test',
+                },
+            );
+
         const reponse = await request(server)
             .post('/api/login')
             .send(
                 {
-                    email: 'forDeleteEmail@email.com',
+                    email,
                     password: 'password123',
                 },
             );
@@ -54,24 +44,38 @@ describe('User register test', () => {
             .expect(200);
     });
 
-    test('Should return 200 when all params are valid and the user is update', async () => {
+    test('Should return 200 when all params are valid and the user is updated', async () => {
+        const email = randomEmail({ domain: 'testupdate.com' });
+
+        await request(server)
+            .post('/api/regiterUser')
+            .send(
+                {
+                    email,
+                    password: 'password123',
+                    confirmPassword: 'password123',
+                    name: 'Name test',
+                },
+            );
+
         const reponse = await request(server)
             .post('/api/login')
             .send(
                 {
-                    email: 'forUpdateEmail@email.com',
+                    email,
                     password: 'password123',
                 },
             );
 
         const data = decodeToken(reponse.body.token);
+        const emailUpdated = randomEmail({ domain: 'testupdated.com' });
 
         await request(server)
         // eslint-disable-next-line @typescript-eslint/dot-notation
             .put(`/api/updateUser/${data['id']}`)
             .send(
                 {
-                    email: 'forUpdateEmailUpdated@email.com',
+                    emailUpdated,
                     name: 'Name test updated',
                 },
             )
@@ -119,31 +123,24 @@ describe('User register test', () => {
     });
 
     test('Should return 200 when all params are valid and the user is deleted', async () => {
-        const reponse = await request(server)
-            .post('/api/login')
+        const email = randomEmail({ domain: 'test.com' });
+
+        await request(server)
+            .post('/api/regiterUser')
             .send(
                 {
-                    email: 'forDeleteEmail@email.com',
+                    email,
                     password: 'password123',
+                    confirmPassword: 'password123',
+                    name: 'Name password update test',
                 },
             );
 
-        const data = decodeToken(reponse.body.token);
-
-        await request(server)
-            // eslint-disable-next-line @typescript-eslint/dot-notation
-            .delete(`/api/deleteUser/${data['id']}`)
-            .set('x-access-token', reponse.body.token)
-            .send()
-            .expect(200);
-    });
-
-    test('Should return 200 when all params are valid and the use is deleted', async () => {
         const reponse = await request(server)
             .post('/api/login')
             .send(
                 {
-                    email: 'forUpdateEmailUpdated@email.com',
+                    email,
                     password: 'password123',
                 },
             );

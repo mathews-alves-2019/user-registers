@@ -36,6 +36,7 @@ export class UpdateUserController implements Controller {
                 body: response,
             };
         } catch (error: any) {
+            console.error(error);
             return serverError(error);
         }
     }

@@ -1,10 +1,9 @@
 import 'reflect-metadata';
+import request from 'supertest';
 import randomEmail from 'random-email';
 import { Express } from 'express';
-import { app } from '../server';
-import { decodeToken } from './commons/auth/auth';
-
-const request = require('supertest');
+import { app } from '../src/server';
+import { decodeToken } from '../src/presentation/commons/auth/auth';
 
 let server: Express;
 
@@ -54,7 +53,7 @@ describe('User register test', () => {
             .expect(200);
     });
 
-    test('Should return 200 when all params are valid and the adress is inserted', async () => {
+    test('Should return 200 when all params are valid and the adress is deleted', async () => {
         const email = randomEmail({ domain: 'test.com' });
         await request(server)
             .post('/api/regiterUser')
@@ -110,7 +109,7 @@ describe('User register test', () => {
             .expect(200);
     });
 
-    test('Should return 200 when all params are valid and the adress is inserted', async () => {
+    test('Should return 200 when the adress is finded by query string.', async () => {
         const email = randomEmail({ domain: 'test.com' });
         await request(server)
             .post('/api/regiterUser')
@@ -156,7 +155,7 @@ describe('User register test', () => {
             .expect(200);
     });
 
-    test('Should return 200 when all params are valid and the adress is inserted', async () => {
+    test('Should return 200 when the adress is finded by id param.', async () => {
         const email = randomEmail({ domain: 'test.com' });
         await request(server)
             .post('/api/regiterUser')
@@ -202,7 +201,7 @@ describe('User register test', () => {
             .expect(200);
     });
 
-    test('Should return 200 when all params are valid and the adress is inserted', async () => {
+    test('Should return 200 when all params are valid and the adress is updated', async () => {
         const email = randomEmail({ domain: 'test.com' });
         await request(server)
             .post('/api/regiterUser')

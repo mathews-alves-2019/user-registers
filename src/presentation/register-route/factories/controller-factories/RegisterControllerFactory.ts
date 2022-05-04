@@ -1,7 +1,7 @@
-import { makeUserValidation } from '../validation-factories/RegisterValidationFactory';
+import { makeUserValidation } from '../validation-factories';
 import { Controller } from '../../../../interfaces';
-import { RegisterController } from '../../controllers/RegisterController';
-import { CreateUserRepository } from '../../../commons/repositories/user/CreateUserRepository';
+import { RegisterController } from '../../controllers';
+import { CreateUserRepository } from '../../../commons/repositories/user';
 import Database from '../../../../config/database';
 
 export const makeRegisterController = (): Controller => {

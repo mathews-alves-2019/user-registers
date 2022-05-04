@@ -1,25 +1,14 @@
 import 'reflect-metadata';
+import request from 'supertest';
 import randomEmail from 'random-email';
 import { Express } from 'express';
-import { app } from '../server';
-
-const request = require('supertest');
+import { app } from '../src/server';
 
 let server: Express;
 
 describe('User register test', () => {
     beforeAll(async () => {
         server = await app();
-        await request(server)
-            .post('/api/regiterUser')
-            .send(
-                {
-                    email: 'valid_email@mail.com',
-                    password: 'password123',
-                    confirmPassword: 'password123',
-                    name: 'Name test',
-                },
-            );
     });
 
     test('Should return 200 when all params are valid', async () => {
@@ -27,7 +16,7 @@ describe('User register test', () => {
             .post('/api/regiterUser')
             .send(
                 {
-                    email: randomEmail({ domain: 'test.com' }),
+                    email: randomEmail({ domain: 'testRegister.com' }),
                     password: 'password123',
                     confirmPassword: 'password123',
                     name: 'Name test',
@@ -41,7 +30,7 @@ describe('User register test', () => {
             .post('/api/regiterUser')
             .send(
                 {
-                    email: 'valid_email@mail.com',
+                    email: randomEmail({ domain: 'testRegister.com' }),
                     password: '12345678',
                     confirmPassword: '12345678',
                     name: 'Name test',
@@ -55,7 +44,7 @@ describe('User register test', () => {
             .post('/api/regiterUser')
             .send(
                 {
-                    email: 'valid_email@mail.com',
+                    email: randomEmail({ domain: 'testRegister.com' }),
                     password: 'password1234',
                     confirmPassword: 'password',
                     name: 'Name test',

@@ -1,13 +1,13 @@
 import { Router } from 'express';
 
-import adaptRoute from './commons/adapters/route-adapter';
-import { verifyJWT } from './commons/auth/auth';
+import adaptRoute from '../presentation/commons/adapters/route-adapter';
+import { verifyJWT } from '../presentation/commons/auth/auth';
 import {
     makeGetAdressController,
     makeUpdateAdressController,
     makeDeleteAdressController,
     makeAddAdressController,
-} from './adress-routes/factories/controller-factories';
+} from '../presentation/adress-routes/factories/controller-factories';
 
 export default async (router: Router) => {
     router.post('/addAdress', verifyJWT, adaptRoute(makeAddAdressController()));

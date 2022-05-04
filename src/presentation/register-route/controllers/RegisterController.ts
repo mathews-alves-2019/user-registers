@@ -5,7 +5,7 @@ import {
     Validation,
 } from '../../../interfaces';
 import { badRequest, serverError } from '../../helpers';
-import { UserRegisterDTO } from '../../commons/dto/UserRegisterDTO';
+import { UserRegisterDTO } from '../../commons/dto';
 import { returnEncryptPassword } from '../../helpers/password-helper';
 
 export class RegisterController implements Controller {
