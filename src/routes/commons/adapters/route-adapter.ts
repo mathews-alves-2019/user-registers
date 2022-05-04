@@ -5,6 +5,7 @@ const adaptRoute = (controller: Controller) => async (req: Request, res: Respons
     const request = {
         ...(req.body || {}),
         ...(req.params || {}),
+        ...(req.query || {}),
     };
     const httpResponse = await controller.handle(request);
     if (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299) {

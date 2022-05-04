@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import randomEmail from 'random-email';
 import { Express } from 'express';
 import { app } from '../server';
 import { decodeToken } from './commons/auth/auth';
@@ -79,11 +80,23 @@ describe('User register test', () => {
     });
 
     test('Should return 200 when all params are valid and the user password is update', async () => {
+        const email = randomEmail({ domain: 'test.com' });
+        await request(server)
+            .post('/api/regiterUser')
+            .send(
+                {
+                    email,
+                    password: 'password123',
+                    confirmPassword: 'password123',
+                    name: 'Name password update test',
+                },
+            );
+
         const reponse = await request(server)
             .post('/api/login')
             .send(
                 {
-                    email: 'forUpdateEmailUpdated@email.com',
+                    email,
                     password: 'password123',
                 },
             );
@@ -96,16 +109,16 @@ describe('User register test', () => {
             .send(
                 {
                     name: 'Name test updated',
-                    email: 'forUpdateEmailUpdated@email.com',
-                    password: 'password123',
-                    confirmPassword: 'password123',
+                    email,
+                    password: 'password1234',
+                    confirmPassword: 'password1234',
                 },
             )
             .set('x-access-token', reponse.body.token)
             .expect(200);
     });
 
-    test('Should return 200 when all params are valid and the use is deleted', async () => {
+    test('Should return 200 when all params are valid and the user is deleted', async () => {
         const reponse = await request(server)
             .post('/api/login')
             .send(

@@ -1,7 +1,7 @@
 import validator from 'validator';
-import { EmailValidator } from '../interfaces';
+import { BasicValidator } from '../interfaces';
 
-export class EmailValidatorAdapter implements EmailValidator {
+export class EmailValidatorAdapter implements BasicValidator {
     isValid(email: string): boolean {
         return validator.isEmail(email);
     }

@@ -1,13 +1,13 @@
-import User from '../../entities/User';
 import { UpdateEntityRepository } from '../../../../interfaces';
 import Database from '../../../../config/database';
+import Adress from '../../entities/Adress';
 
-export class UpdateUserRepository implements UpdateEntityRepository {
+export class UpdateAdressRepository implements UpdateEntityRepository {
     constructor(private readonly database: Database){
     }
 
-    async execute(user: User) {
+    async execute(adress: Adress) {
         return await this.database.init().then(async () => await this.database.getConnection()
-            .manager.save(User, user).then((response: any) => response));
+            .manager.save(Adress, adress).then((response: any) => response));
     }
 }

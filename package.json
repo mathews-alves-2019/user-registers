@@ -5,10 +5,11 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon",
-    "start": "ts-node src/app.ts",
-    "test": "jest --forceExit",
+    "start": "set NODE_ENV=development&& ts-node src/app.ts",
+    "test": "set NODE_ENV=test&& jest --forceExit",
     "typeorm:create-migration": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create -n ",
-    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
+    "typeorm:test": "set NODE_ENV=test&& ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "typeorm:development": "set NODE_ENV=development&& ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
   "author": "Mathews Alves",
   "license": "ISC",

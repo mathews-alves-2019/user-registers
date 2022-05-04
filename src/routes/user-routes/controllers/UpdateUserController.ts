@@ -1,4 +1,3 @@
-import { UserRegisterDTO } from '../../commons/dto';
 import {
     Controller,
     HttpResponse,
@@ -6,32 +5,31 @@ import {
     Validation,
 } from '../../../interfaces';
 import { badRequest, serverError } from '../../helpers';
+import { FindUserByIdRepository } from '../../commons/repositories/user';
 
 export class UpdateUserController implements Controller {
     constructor(
         private readonly validation: Validation,
         private readonly repository: UpdateEntityRepository,
+        private readonly findRepository: FindUserByIdRepository,
     ) { }
 
     async handle(request: Request): Promise<HttpResponse> {
         try {
-            let user: UserRegisterDTO;
             if (request.password) {
                 const error = await this.validation.validate(request);
                 if (error) {
                     return badRequest(error);
                 }
-                user = new UserRegisterDTO(
-                    request.name,
-                    request.email,
-                    request.password,
-                );
-            } else {
-                user = new UserRegisterDTO(
-                    request.name,
-                    request.email,
-                );
             }
+
+            const user = await this.findRepository.execute(request.userId);
+            user.email = request.email;
+            user.name = request.name;
+            if (request.password) {
+                user.password = request.password;
+            }
+
             const response = await this.repository.execute(user, request.userId);
             return {
                 statusCode: 200,

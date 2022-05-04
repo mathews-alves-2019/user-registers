@@ -2,7 +2,10 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     Column,
+    OneToMany,
+    JoinColumn,
 } from 'typeorm';
+import Adress from './Adress';
 
 @Entity('users')
 export default class Users {
@@ -15,6 +18,10 @@ export default class Users {
     @Column()
     email: string;
 
-    @Column({ select: false, update: false })
+    @Column({ select: false })
     password: string;
+
+    @OneToMany(() => Adress, (adress) => adress.users)
+    @JoinColumn({ name: 'id', referencedColumnName: 'usersId' })
+    adress: Adress[];
 }
