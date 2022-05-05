@@ -241,7 +241,7 @@ describe('User register test', () => {
             .set('x-access-token', reponse.body.token);
 
         await request(server)
-            .put(`/api/updateAdress/${adress.body.id}`)
+            .put(`/api/adress/${adress.body.id}`)
             .send({
                 houseNumber: '13',
                 street: 'R. Manoel Soares update test',
