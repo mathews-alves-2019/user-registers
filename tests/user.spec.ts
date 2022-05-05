@@ -15,7 +15,7 @@ describe('User register test', () => {
     test('Should return 200 when all params are valid and the user inserted.', async () => {
         const email = randomEmail({ domain: 'test.com' });
         await request(server)
-            .post('/api/regiterUser')
+            .post('/api/user')
             .send(
                 {
                     email,
@@ -38,7 +38,7 @@ describe('User register test', () => {
 
         await request(server)
             // eslint-disable-next-line @typescript-eslint/dot-notation
-            .get(`/api/getUser/${data['id']}`)
+            .get(`/api/user/${data['id']}`)
             .set('x-access-token', reponse.body.token)
             .send()
             .expect(200);
@@ -48,7 +48,7 @@ describe('User register test', () => {
         const email = randomEmail({ domain: 'testupdate.com' });
 
         await request(server)
-            .post('/api/regiterUser')
+            .post('/api/user')
             .send(
                 {
                     email,
@@ -72,7 +72,7 @@ describe('User register test', () => {
 
         await request(server)
         // eslint-disable-next-line @typescript-eslint/dot-notation
-            .put(`/api/updateUser/${data['id']}`)
+            .put(`/api/user/${data['id']}`)
             .send(
                 {
                     emailUpdated,
@@ -86,7 +86,7 @@ describe('User register test', () => {
     test('Should return 200 when all params are valid and the user password is update', async () => {
         const email = randomEmail({ domain: 'test.com' });
         await request(server)
-            .post('/api/regiterUser')
+            .post('/api/user')
             .send(
                 {
                     email,
@@ -109,7 +109,7 @@ describe('User register test', () => {
 
         await request(server)
         // eslint-disable-next-line @typescript-eslint/dot-notation
-            .put(`/api/updateUser/${data['id']}`)
+            .put(`/api/user/${data['id']}`)
             .send(
                 {
                     name: 'Name test updated',
@@ -126,7 +126,7 @@ describe('User register test', () => {
         const email = randomEmail({ domain: 'test.com' });
 
         await request(server)
-            .post('/api/regiterUser')
+            .post('/api/user')
             .send(
                 {
                     email,
@@ -149,7 +149,7 @@ describe('User register test', () => {
 
         await request(server)
             // eslint-disable-next-line @typescript-eslint/dot-notation
-            .delete(`/api/deleteUser/${data['id']}`)
+            .delete(`/api/user/${data['id']}`)
             .set('x-access-token', reponse.body.token)
             .send()
             .expect(200);

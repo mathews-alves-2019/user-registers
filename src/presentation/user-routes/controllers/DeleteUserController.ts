@@ -12,7 +12,7 @@ export class DeleteUserController implements Controller {
 
     async handle(request: Request): Promise<HttpResponse> {
         try {
-            const response = await this.repository.execute(request.userId);
+            const response = await this.repository.execute(request.id);
             return {
                 statusCode: 200,
                 body: response,
@@ -24,5 +24,5 @@ export class DeleteUserController implements Controller {
 }
 
 interface Request {
-    userId: string
+    id: string
 }

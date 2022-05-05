@@ -13,6 +13,6 @@ export default async (router: Router) => {
     router.post('/addAdress', verifyJWT, adaptRoute(makeAddAdressController()));
     router.get('/getAdress/:id', verifyJWT, adaptRoute(makeGetAdressController()));
     router.get('/getAdress/', verifyJWT, adaptRoute(makeGetAdressController()));
-    router.delete('/deleteAdress/:adressId', verifyJWT, adaptRoute(makeDeleteAdressController()));
+    router.delete('/deleteAdress/:id', verifyJWT, adaptRoute(makeDeleteAdressController()));
     router.put('/updateAdress/:id', verifyJWT, adaptRoute(makeUpdateAdressController()));
 };

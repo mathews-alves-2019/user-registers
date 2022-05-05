@@ -5,7 +5,7 @@ import { verifyJWT } from '../presentation/commons/auth/auth';
 import { makeGetUserController, makeDeleteUserController, makeUpdateUserController } from '../presentation/user-routes/factories/controller-factories';
 
 export default async (router: Router) => {
-    router.get('/getUser/:userId', verifyJWT, adaptRoute(makeGetUserController()));
-    router.delete('/deleteUser/:userId', verifyJWT, adaptRoute(makeDeleteUserController()));
-    router.put('/updateUser/:userId', verifyJWT, adaptRoute(makeUpdateUserController()));
+    router.get('/user/:id', verifyJWT, adaptRoute(makeGetUserController()));
+    router.delete('/user/:id', verifyJWT, adaptRoute(makeDeleteUserController()));
+    router.put('/user/:id', verifyJWT, adaptRoute(makeUpdateUserController()));
 };

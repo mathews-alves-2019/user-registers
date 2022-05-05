@@ -14,7 +14,7 @@ describe('User register test', () => {
     test('Should return 200 when all params are valid', async () => {
         const email = randomEmail({ domain: 'test.com' });
         await request(server)
-            .post('/api/regiterUser')
+            .post('/api/user')
             .send(
                 {
                     email,
@@ -50,7 +50,7 @@ describe('User register test', () => {
     test('Should return 401 when the password sent is invalid', async () => {
         const email = randomEmail({ domain: 'test.com' });
         await request(server)
-            .post('/api/regiterUser')
+            .post('/api/user')
             .send(
                 {
                     email,

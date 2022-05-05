@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon",
-    "start": "set NODE_ENV=development&& ts-node src/app.ts",
+    "dev": "set NODE_ENV=development&& nodemon",
+    "start": "ts-node src/app.ts",
     "test": "set NODE_ENV=test&& jest --forceExit",
     "typeorm:create-migration": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create -n ",
     "typeorm:test": "set NODE_ENV=test&& ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
@@ -37,6 +37,8 @@
     "lint-staged": "^12.4.1",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
+    "swagger-jsdoc": "^6.2.1",
+    "swagger-ui-express": "^4.3.0",
     "ts-transformer-keys": "^0.4.3",
     "typeorm": "^0.2.45",
     "validator": "^13.6.0"

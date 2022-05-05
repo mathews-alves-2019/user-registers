@@ -13,7 +13,7 @@ describe('User register test', () => {
 
     test('Should return 200 when all params are valid', async () => {
         await request(server)
-            .post('/api/regiterUser')
+            .post('/api/user')
             .send(
                 {
                     email: randomEmail({ domain: 'testRegister.com' }),
@@ -27,7 +27,7 @@ describe('User register test', () => {
 
     test('Should return 400 when password do not have numbers or letters', async () => {
         await request(server)
-            .post('/api/regiterUser')
+            .post('/api/user')
             .send(
                 {
                     email: randomEmail({ domain: 'testRegister.com' }),
@@ -41,7 +41,7 @@ describe('User register test', () => {
 
     test('Should return 400 when passwords are divergents', async () => {
         await request(server)
-            .post('/api/regiterUser')
+            .post('/api/user')
             .send(
                 {
                     email: randomEmail({ domain: 'testRegister.com' }),

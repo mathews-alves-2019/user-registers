@@ -28,7 +28,14 @@ export class LoginController implements Controller {
             }
             return {
                 statusCode: 200,
-                body: { token: getToken(user.id, user.email) },
+                body: {
+                    token: getToken(user.id, user.email),
+                    data: {
+                        id: user.id,
+                        email: user.email,
+                        name: user.name,
+                    },
+                },
             };
         } catch (error: any) {
             console.log(error);

@@ -21,7 +21,9 @@ export default class Users {
     @Column({ select: false })
     password: string;
 
-    @OneToMany(() => Adress, (adress) => adress.users)
+    @OneToMany(() => Adress, (adress) => adress.users, {
+        eager: true,
+    })
     @JoinColumn({ name: 'id', referencedColumnName: 'usersId' })
     adress: Adress[];
 }

@@ -1,9 +1,10 @@
+import { UserNotExistsError } from '../../../errors/UserNotExistsError';
 import {
     Controller,
     EntityRepository,
     HttpResponse,
 } from '../../../interfaces';
-import { serverError } from '../../helpers';
+import { badRequest, serverError } from '../../helpers';
 
 export class GetUserController implements Controller {
     constructor(
@@ -12,7 +13,10 @@ export class GetUserController implements Controller {
 
     async handle(request: Request): Promise<HttpResponse> {
         try {
-            const response = await this.repository.execute(request.userId);
+            const response = await this.repository.execute(request.id);
+            if (!response) {
+                return badRequest(new UserNotExistsError());
+            }
             return {
                 statusCode: 200,
                 body: response,
@@ -24,5 +28,5 @@ export class GetUserController implements Controller {
 }
 
 interface Request {
-    userId: string
+    id: string
 }

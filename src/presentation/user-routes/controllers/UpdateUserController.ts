@@ -23,14 +23,14 @@ export class UpdateUserController implements Controller {
                 }
             }
 
-            const user = await this.findRepository.execute(request.userId);
+            const user = await this.findRepository.execute(request.id);
             user.email = request.email;
             user.name = request.name;
             if (request.password) {
                 user.password = request.password;
             }
 
-            const response = await this.repository.execute(user, request.userId);
+            const response = await this.repository.execute(user, request.id);
             return {
                 statusCode: 200,
                 body: response,
@@ -47,5 +47,5 @@ interface Request {
     password: string
     confirmPassword: string
     name: string
-    userId: string
+    id: string
 }

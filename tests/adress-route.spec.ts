@@ -15,7 +15,7 @@ describe('User register test', () => {
     test('Should return 200 when all params are valid and the adress is inserted', async () => {
         const email = randomEmail({ domain: 'test.com' });
         await request(server)
-            .post('/api/regiterUser')
+            .post('/api/user')
             .send(
                 {
                     email,
@@ -56,7 +56,7 @@ describe('User register test', () => {
     test('Should return 200 when all params are valid and the adress is deleted', async () => {
         const email = randomEmail({ domain: 'test.com' });
         await request(server)
-            .post('/api/regiterUser')
+            .post('/api/user')
             .send(
                 {
                     email,
@@ -112,7 +112,7 @@ describe('User register test', () => {
     test('Should return 200 when the adress is finded by query string.', async () => {
         const email = randomEmail({ domain: 'test.com' });
         await request(server)
-            .post('/api/regiterUser')
+            .post('/api/user')
             .send(
                 {
                     email,
@@ -158,7 +158,7 @@ describe('User register test', () => {
     test('Should return 200 when the adress is finded by id param.', async () => {
         const email = randomEmail({ domain: 'test.com' });
         await request(server)
-            .post('/api/regiterUser')
+            .post('/api/user')
             .send(
                 {
                     email,
@@ -204,7 +204,7 @@ describe('User register test', () => {
     test('Should return 200 when all params are valid and the adress is updated', async () => {
         const email = randomEmail({ domain: 'test.com' });
         await request(server)
-            .post('/api/regiterUser')
+            .post('/api/user')
             .send(
                 {
                     email,

@@ -12,7 +12,7 @@ export class DeleteAdressController implements Controller {
 
     async handle(request: Request): Promise<HttpResponse> {
         try {
-            const response = await this.repository.execute(request.adressId);
+            const response = await this.repository.execute(request.id);
             return {
                 statusCode: 200,
                 body: response,
@@ -24,5 +24,5 @@ export class DeleteAdressController implements Controller {
 }
 
 interface Request {
-    adressId: string
+    id: string
 }
