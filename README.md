@@ -63,10 +63,18 @@ After that you need update the file ormconfig.env e set the following fields wit
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-<!-- Recommendation -->
-> ## Recommendation
+> ## Factories
+   >## Validations Factories
+   >Files named with ValidationFactory are responsible for assembling all validations of the route in question for later use in controllers.
+   >
+   >## Controllers Factories
+   >The files named with ControllerFactory are responsible for assembling the controllers of the routes that must call the repository, carry out the validations and return some information to the user.
 
-You can use the Insomnia app to do the requests to API or any other app you like. See the insomnia json and import him to your Insomnia application.
+> ## Adapter
+> Files named with *Adapter are responsible for providing a customizable adaptation to the files that implement them, so each file implements its interface in a unique way to suit its purpose.
+
+> ## Recommendation
+>You can use the Insomnia app to do the requests to API or any other app you like. See the insomnia json and import him to your Insomnia application.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -84,7 +92,7 @@ You can use the Insomnia app to do the requests to API or any other app you like
 * Abstract Server
 * Decorator
 
-> ## Bibliotecas e Ferramentas
+> ## Libraries and Tools
 * Typescript
 * Yarn
 * Git
