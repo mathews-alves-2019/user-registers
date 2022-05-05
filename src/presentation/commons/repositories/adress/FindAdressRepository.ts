@@ -9,7 +9,7 @@ export class FindAdressRepository implements EntityRepository {
     async execute(where: { country: string, state: string, id: string }) {
         return await this.database.init().then(async () => await this.database
             .getConnection().manager
-            .findOne(Adress, {
+            .find(Adress, {
                 where,
             }));
     }

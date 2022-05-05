@@ -37,7 +37,7 @@ describe('User register test', () => {
         const data = decodeToken(reponse.body.token);
 
         await request(server)
-            .post('/api/addAdress')
+            .post('/api/adress')
             .send(
                 {
                     cep: '08090‑284',
@@ -78,7 +78,7 @@ describe('User register test', () => {
         const data = decodeToken(reponse.body.token);
 
         const adress = await request(server)
-            .post('/api/addAdress')
+            .post('/api/adress')
             .send(
                 {
                     cep: '08090‑284',
@@ -93,7 +93,7 @@ describe('User register test', () => {
             .set('x-access-token', reponse.body.token);
 
         await request(server)
-            .delete(`/api/deleteAdress/${adress.body.id}`)
+            .delete(`/api/adress/${adress.body.id}`)
             .send(
                 {
                     cep: '08090‑000',
@@ -134,7 +134,7 @@ describe('User register test', () => {
         const data = decodeToken(reponse.body.token);
 
         await request(server)
-            .post('/api/addAdress')
+            .post('/api/adress')
             .send(
                 {
                     cep: '08090‑284',
@@ -149,7 +149,7 @@ describe('User register test', () => {
             .set('x-access-token', reponse.body.token);
 
         await request(server)
-            .get('/api/getAdress/?country=BR&state=PE')
+            .get('/api/adress/?country=BR&state=PE')
             .send()
             .set('x-access-token', reponse.body.token)
             .expect(200);
@@ -180,7 +180,7 @@ describe('User register test', () => {
         const data = decodeToken(reponse.body.token);
 
         const adress = await request(server)
-            .post('/api/addAdress')
+            .post('/api/adress')
             .send(
                 {
                     cep: '08090‑284',
@@ -195,7 +195,7 @@ describe('User register test', () => {
             .set('x-access-token', reponse.body.token);
 
         await request(server)
-            .get(`/api/getAdress/${adress.body.id}`)
+            .get(`/api/adress/${adress.body.id}`)
             .send()
             .set('x-access-token', reponse.body.token)
             .expect(200);
@@ -226,7 +226,7 @@ describe('User register test', () => {
         const data = decodeToken(reponse.body.token);
 
         const adress = await request(server)
-            .post('/api/addAdress')
+            .post('/api/adress')
             .send(
                 {
                     cep: '58010-010',

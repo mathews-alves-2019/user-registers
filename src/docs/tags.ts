@@ -6,5 +6,8 @@ export default {
         {
             name: 'Adress', // name of a tag
         },
+        {
+            name: 'Login', // name of a tag
+        },
     ],
 };

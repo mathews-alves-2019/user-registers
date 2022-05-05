@@ -5,13 +5,11 @@ import {
     Validation,
 } from '../../../interfaces';
 import { badRequest, serverError } from '../../helpers';
-import Adress from '../../commons/entities/Adress';
 
 export class UpdateAdressController implements Controller {
     constructor(
         private readonly validation: Validation,
         private readonly repository: EntityRepository,
-        private readonly findAdressRepository: EntityRepository,
     ) { }
 
     async handle(request: Request): Promise<HttpResponse> {
@@ -22,29 +20,15 @@ export class UpdateAdressController implements Controller {
                     return badRequest(error);
                 }
             }
-            const adress: Adress = await this.findAdressRepository.execute({
-                id: request.id,
-            }).then((response: Adress) => this.makeAdressEntity(response, request));
 
-            const response = await this.repository.execute(adress);
+            await this.repository.execute(request);
             return {
                 statusCode: 200,
-                body: response,
+                body: {},
             };
         } catch (error: any) {
             return serverError(error);
         }
-    }
-
-    makeAdressEntity(adress: Adress, request: Request) {
-        const tempAdress = adress;
-        tempAdress.cep = request.cep ? request.cep : tempAdress.cep;
-        tempAdress.country = request.country ? request.country : tempAdress.country;
-        tempAdress.houseNumber = request.houseNumber ? request.houseNumber : tempAdress.houseNumber;
-        tempAdress.state = request.state ? request.state : tempAdress.state;
-        tempAdress.street = request.street ? request.street : tempAdress.street;
-
-        return tempAdress;
     }
 }
 

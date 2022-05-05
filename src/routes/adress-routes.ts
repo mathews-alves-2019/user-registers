@@ -10,9 +10,9 @@ import {
 } from '../presentation/adress-routes/factories/controller-factories';
 
 export default async (router: Router) => {
-    router.post('/addAdress', verifyJWT, adaptRoute(makeAddAdressController()));
-    router.get('/getAdress/:id', verifyJWT, adaptRoute(makeGetAdressController()));
-    router.get('/getAdress/', verifyJWT, adaptRoute(makeGetAdressController()));
-    router.delete('/deleteAdress/:id', verifyJWT, adaptRoute(makeDeleteAdressController()));
-    router.put('/updateAdress/:id', verifyJWT, adaptRoute(makeUpdateAdressController()));
+    router.post('/adress', verifyJWT, adaptRoute(makeAddAdressController()));
+    router.get('/adress/:id', verifyJWT, adaptRoute(makeGetAdressController()));
+    router.get('/adress', verifyJWT, adaptRoute(makeGetAdressController()));
+    router.delete('/adress/:id', verifyJWT, adaptRoute(makeDeleteAdressController()));
+    router.put('/adress/:id', verifyJWT, adaptRoute(makeUpdateAdressController()));
 };

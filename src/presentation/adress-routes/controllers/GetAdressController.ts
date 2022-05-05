@@ -27,4 +27,6 @@ interface Request {
     id: string
     country: string
     state: string
+    userId: string
+    userIdFromToken: string
 }

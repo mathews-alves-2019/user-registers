@@ -2,12 +2,12 @@ import basicInfo from './basicInfo';
 import components from './components';
 import servers from './servers';
 import tags from './tags';
-import userRoute from './users';
+import paths from './paths';
 
 export default {
     ...basicInfo,
     ...components,
     ...servers,
     ...tags,
-    ...userRoute,
+    ...paths,
 };

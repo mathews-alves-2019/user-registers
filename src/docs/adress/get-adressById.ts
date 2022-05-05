@@ -3,9 +3,9 @@ export default {
         security: [{
             ApiKeyAuth: [],
         }],
-        tags: ['Users'],
-        description: 'Rota para encontrar usuário(s).',
-        operationId: 'userGet',
+        tags: ['Adress'],
+        description: 'Rota para encontrar endereço do usuário(s).',
+        operationId: 'adressGet',
         parameters: [
             {
                 name: 'id',
