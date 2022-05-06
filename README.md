@@ -17,7 +17,7 @@ This is a node project for registering users and their addresses. I used the pri
    yarn add
    ```
 
-3. You need to create a database using PostgreSQL. If you want to create an local database you can access this link https://www.postgresql.org/download/ and get the postgres installer.
+3. You need to create a database using PostgreSQL. If you want to create a local database you can access this link https://www.postgresql.org/download/ and get the postgres installer.
 After that you need update the file ormconfig.env e set the following fields with you connection configuration:
 
    ```sh
