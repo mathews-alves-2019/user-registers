@@ -31,7 +31,9 @@ export class LoginController implements Controller {
                 body: {
                     token: getToken(user.id, user.email),
                     data: {
-                        ...user,
+                        email: user.email,
+                        id: user.id,
+                        adress: user.address || {},
                     },
                 },
             };
