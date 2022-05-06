@@ -42,7 +42,11 @@ After that you need update the file ormconfig.env e set the following fields wit
 4. Run the following command to create the tables:
 
    ```sh
-   yarn typeorm migration:run
+   yarn typeorm:test migration:run
+   ```
+   For the test environment, or:
+   ```sh
+   yarn typeorm:development migration:run
    ```
     **If you get an error with uuid_generate_v4() function, use this query on you database**: 
     ```
