@@ -14,7 +14,7 @@ This is a node project for registering users and their addresses. I used the pri
 2. Install dependencies
 
    ```sh
-   yarn add
+   yarn
    ```
 
 3. You need to create a database using PostgreSQL. If you want to create a local database you can access this link https://www.postgresql.org/download/ and get the postgres installer.
